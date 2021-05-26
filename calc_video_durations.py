@@ -1,3 +1,8 @@
+''' Scenario: you have a folder with tons of video, and potentially with subfolders too.
+	You want to know the duration of each video file
+	Just run this script and it will give you the duration for each video files.
+'''
+
 import os
 import subprocess
 import glob
@@ -8,13 +13,13 @@ from pymediainfo import MediaInfo
 def scan_for_files_recursivly(path: str=None) -> 'dict of str':	
 	if not path:
 		path = os.getcwd()
-		files = []
-		# Get all files recursively
-		for root, d, f in os.walk(path):		
-			for basename in f:
-				filename = os.path.join(root, basename)
-				files.append(filename)
-		return {'files': files}
+	files = []
+	# Get all files recursively
+	for root, d, f in os.walk(path):		
+		for basename in f:
+			filename = os.path.join(root, basename)
+			files.append(filename)
+	return {'files': files}
 
 def get_duration(path: str) -> float:
 	media_info = MediaInfo.parse(path)
