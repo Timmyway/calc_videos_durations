@@ -1,7 +1,7 @@
 #### Scenario
 - Suppose that you have a folder (and potentially with subfolders) with tons of video.
-- So you want to know the duration of each video file
-- This script will give you the duration for each video files.
+- So you would like to know the duration of each video files.
+- This script will give you the duration for each single video, then it will make an html report of tracked files.
 
 #### Dependencies
 - You will have to install MediaInfo
