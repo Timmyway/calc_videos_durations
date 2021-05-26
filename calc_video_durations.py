@@ -10,7 +10,12 @@ import glob
 # External library: pip install pymediainfo
 from pymediainfo import MediaInfo
 
-def scan_for_files_recursivly(path: str=None) -> 'dict of str':	
+def scan_for_files_recursivly(path: str=None) -> 'dict of str':
+	''' Return a dict with all the files found inside a directory 
+		
+		By default, it will scan the current directory, but a path
+		can be specified as well.
+	'''	
 	if not path:
 		path = os.getcwd()
 	files = []
@@ -22,6 +27,8 @@ def scan_for_files_recursivly(path: str=None) -> 'dict of str':
 	return {'files': files}
 
 def get_duration(path: str) -> float:
+	''' Get the duration of a single video file '''
+
 	media_info = MediaInfo.parse(path)
 	#duration in milliseconds
 	duration_in_ms = media_info.tracks[0].duration
@@ -45,8 +52,10 @@ def scan_videos_durations(path: str=None, display: bool=False, time_unit: str='m
 		export: bool=False, export_name: str='video_durations.html'
 	) -> dict:
 	''' Return a dict of path and duration 
+
 		Ex: {"path": 4} 
 	'''
+	
 	durations = {}
 	for filename in scan_for_files_recursivly(path).get('files'):
 		if not filename:
